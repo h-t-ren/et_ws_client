@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:et="http://www.ime.iiasa.ac.at/et/schemas" 
+	targetNamespace="http://www.ime.iiasa.ac.at/et/schemas">
+
+	<xs:element name="marketRequest">
+		<xs:complexType>
+			<xs:all>
+				<xs:element  name="idMarket" type="xs:long" />
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="marketResponse">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="et:market" />
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+
+	
+	<xs:element name="market">
+		<xs:complexType>
+		<xs:sequence>
+				<xs:element name="idMarket" type="xs:long" />
+				<xs:element name="name" type="xs:string" />
+			    <xs:element name="idSolver" type="xs:int"/>
+                <xs:element maxOccurs="unbounded" ref="et:party"/> 
+		</xs:sequence>
+	</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="party">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="idParty" type="xs:int" />
+                <xs:element name="name" type="xs:string" />
+                <xs:element name="uncertainty" type="xs:double"/>
+                <xs:element name="minEm" type="xs:double"/>
+                <xs:element name="baseEm" type="xs:double"/>
+                <xs:element name="targetEm" type="xs:double"/>
+                <xs:element ref="et:func"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+	
+	 <xs:element name="func">
+        <xs:complexType>
+            <xs:sequence>
+                 <xs:element name="type" type="xs:string"/>
+                 <xs:element maxOccurs="unbounded" ref="et:point"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+        <xs:element name="point">
+        <xs:complexType>
+            <xs:sequence>
+               <xs:element name="em" type="xs:double"/>
+               <xs:element name="cost" type="xs:double"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    
+    <xs:element name="saveAgentRequest">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="et:agent" />
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+		
+	<xs:element name="saveAgentResponse">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="et:agent" />
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+    
+    <xs:element name="agent">
+        <xs:complexType>
+            <xs:sequence>
+                 <xs:element name="idAgent" type="xs:long"/>
+                 <xs:element name="idMarket" type="xs:long" />
+                 <xs:element name="idParty" type="xs:int" />
+                 <xs:element name="type" type="xs:string" />
+                 <xs:element name="riskFactor" type="xs:int" />
+                 <xs:element name="priceFactor" type="xs:int" />
+                 <xs:element name="currentEmission" type="xs:double" />
+                 <xs:element name="bilans" type="xs:double" />
+                 <xs:element name="stratery" type="xs:string" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    
+    
+    
+    
+    
+      <xs:element name="saveAuctionRequest">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="et:auction" />
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+		
+	<xs:element name="saveAuctionResponse">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="et:auction" />
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+        <xs:element name="auction">
+        <xs:complexType>
+            <xs:sequence>
+                 <xs:element name="idAuction" type="xs:long"/>
+                 <xs:element name="idMarket" type="xs:long"/>
+                 <xs:element name="idAgentBuyer" type="xs:long" />
+                 <xs:element name="idAgentSeller" type="xs:long" />
+                 <xs:element name="winPrice" type="xs:double" />
+                 <xs:element name="minPrice" type="xs:double" />
+                 <xs:element name="startTime" type="xs:date" />
+                 <xs:element name="endTime" type="xs:date" />
+                 <xs:element name="units" type="xs:int" />
+                 <xs:element name="minIncrease" type="xs:double" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+          <xs:element name="saveBidRequest">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="et:bid" />
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+		
+	<xs:element name="saveBidResponse">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="et:bid" />
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+        <xs:element name="bid">
+        <xs:complexType>
+            <xs:sequence>
+                 <xs:element name="idBid" type="xs:int"/>
+                 <xs:element name="idAuction" type="xs:long"/>
+                 <xs:element name="idAgent" type="xs:long" />
+                 <xs:element name="price" type="xs:double" />
+                 <xs:element name="time" type="xs:date" />
+
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    
+    
+    
+    
+        <xs:element name="solution">
+        <xs:complexType>
+            <xs:sequence>
+                 <xs:element name="status" type="xs:int"/>
+			     <xs:element name="solverStatus" type="xs:int"/>
+                 <xs:element ref="et:marketSolution"/>
+                 <xs:element maxOccurs="unbounded" ref="et:partySolution"/> 
+                 <xs:element maxOccurs="unbounded" ref="et:msg"/> 
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    
+    
+       <xs:element name="partySolution">
+        <xs:complexType>
+            <xs:sequence>
+                 <xs:element name="idMarket" type="xs:long" />
+                  <xs:element name="idParty" type="xs:int" /> 
+                 <xs:element name="em" type="xs:double" />
+                 <xs:element name="mrgEm" type="xs:double" />
+                 <xs:element name="mrgBase" type="xs:double" />
+                 <xs:element name="mrgTarget" type="xs:double" />
+                 <xs:element name="costBase" type="xs:double" />
+                 <xs:element name="costEm" type="xs:double" />
+                  <xs:element name="costTarget" type="xs:double" />
+                   <xs:element name="profit" type="xs:double" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    
+        
+       <xs:element name="marketSolution">
+        <xs:complexType>
+            <xs:sequence>
+                 <xs:element name="idMarket" type="xs:long" /> 
+                 <xs:element name="mrgCost" type="xs:double" />
+                 <xs:element name="profit" type="xs:double" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    
+           <xs:element name="msg">
+        <xs:complexType>
+            <xs:sequence>
+                 <xs:element name="msgType" type="xs:int" /> 
+                 <xs:element name="idMarket" type="xs:long" /> 
+                 <xs:element name="idParty" type="xs:int" />
+                 <xs:element name="msg" type="xs:string" />
+                 <xs:element name="seq" type="xs:int" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    
+	   <xs:element name="saveSolutionRequest">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="et:solution" />
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+    
+    <xs:element name="saveSolutionResponse" type = "xs:string"/>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</xs:schema>
