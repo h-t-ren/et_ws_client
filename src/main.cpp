@@ -24,6 +24,7 @@ int main() {
 	int returnCode = getMarket(idMarket, res);
 	if (returnCode == SOAP_OK)
 	{
+                cout << "get market by id=421" << *solutionRes<<endl;
 		printMarket(res);
 	}
 
@@ -31,7 +32,7 @@ int main() {
 	_ns1__saveSolutionRequest *solutionReq = new _ns1__saveSolutionRequest;
 	string *solutionRes = new string;
 	saveSolutionTest(solutionReq, solutionRes);
-	cout << "save solution... " << *solutionRes<<endl;
+	cout << "saving solution... " << *solutionRes<<endl;
 
 	return 0;
 }
