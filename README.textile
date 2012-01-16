@@ -1,6 +1,6 @@
  
-h2. Emission trading client example (the WS and web only internal avaible):
----------------------------------------------------------------------------
+h2. Emission trading client example (the WS and web are only internal available):
+---------------------------------------------------------------------------------
 
 * wsdl: http://oder:8084/et_ws/et.wsdl
 * web:  http://oder:8085/d_ggi
