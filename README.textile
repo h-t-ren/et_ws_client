@@ -1,0 +1,6 @@
+ 
+h2. Emission trading client example:
+-----------------------------------
+
+* wsdl: http://oder:8084/et_ws/et.wsdl
+* web:  http://oder:8085/d_ggi
